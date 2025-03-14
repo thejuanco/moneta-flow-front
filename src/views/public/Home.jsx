@@ -1,11 +1,10 @@
 import React from 'react'
+import NavBarHome from '../../components/home/NavBarHome'
 
 const Home = () => {
   return (
     <div>
-        <p>
-            Desde el home
-        </p>
+        <NavBarHome />
     </div>
   )
 }
