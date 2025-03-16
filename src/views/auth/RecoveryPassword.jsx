@@ -1,9 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React, {useState} from 'react'
+import { Navigate, Link } from 'react-router'
 import { useForm } from 'react-hook-form'
+import clientAxios from '../../api/api.axios'
 import NavBarForm from '../../components/auth/NavBarForm'
+import AlertForms from '../../components/auth/AlertForms'
 
 const RecoveryPassword = () => {
+    const [alert, setAlert] = useState({})
+
     const {
         register,
         handleSubmit,
@@ -11,7 +15,17 @@ const RecoveryPassword = () => {
         watch,
       } = useForm();
     
-      const onSubmit = (data) => console.log(data);
+      const onSubmit = async (data) => {
+        try{
+            const { email } = data
+            const result = await clientAxios.post("/auth/recovery-password", { email })
+            console.log(result)
+        }
+        catch (error) {
+            setAlert({message: error.response.data.message})
+            console.log(error)
+        }
+      };
 
   return (
     <>
@@ -41,6 +55,7 @@ const RecoveryPassword = () => {
                     {errors.email?.type === "required" && (
                         <p role="alert" className="text-red-700 text-sm text-center">El correo es obligatorio</p>
                     )}
+                    <AlertForms alert={alert}/>
                     </div>
                     <button className="bg-purple-800 mb-2 text-white w-full py-2 font-semibold rounded-lg hover:bg-purple-700">
                     Continuar
