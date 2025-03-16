@@ -42,7 +42,7 @@ const Login = () => {
                     Contraseña*
                   </label>
                   <Link
-                    to="/auth/forgot-password"
+                    to="/auth/recovery-password"
                     className="text-gray-600 hover:underline"
                   >
                     Olvide mi contraseña
