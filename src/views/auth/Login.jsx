@@ -16,10 +16,10 @@ const Login = () => {
   return (
     <div>
       <NavBarForm />
-      <div className="flex justify-center items-center">
-        <div className="mt-16 md:w-1/4 sm:w-1/2 sm:m-10 border border-gray-100 p-6 rounded-xl shadow">
+      <div className="flex justify-center items-center pt-12">
+        <div className="md:w-1/4 sm:w-1/2 sm:m-10 border border-gray-100 p-6 rounded-xl shadow">
           <h1 className="text-black font-semibold text-2xl">
-            Colabora como nunca antes
+            Tu dinero bajo control
           </h1>
           <h1 className="text-gray-500 text-2xl font-semibold ">
             Inicia Sesión en Moneta
