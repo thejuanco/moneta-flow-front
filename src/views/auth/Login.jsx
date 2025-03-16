@@ -31,10 +31,15 @@ const Login = () => {
                   Correo Electronico*
                 </label>
                 <input
-                  className="w-full p-2 rounded-lg border border-gray-200"
+                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
+                    errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                  }`}
                   placeholder="ejemplo@correo.com"
                   {...register("email", { required: true })}
                 />
+                {errors.password?.type === "required" && (
+                  <p role="alert" className="text-red-700 text-sm text-center">El correo es obligatorio</p>
+                )}
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -49,10 +54,15 @@ const Login = () => {
                   </Link>
                 </div>
                 <input
-                  className="w-full p-2 rounded-lg border border-gray-200"
-                  type='password'
+                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
+                    errors.password ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                  }`}
+                  type="password"
                   {...register("password", { required: true })}
                 />
+                {errors.password?.type === "required" && (
+                  <p role="alert" className="text-red-700 text-sm text-center">La contraseña es obligatoria</p>
+                )}
               </div>
             </div>
             <button className="bg-purple-800 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-purple-700">
