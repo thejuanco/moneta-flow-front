@@ -1,9 +1,12 @@
-import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router';
 import { useForm } from 'react-hook-form'
 import NavBarForm from '../../components/auth/NavBarForm'
+import clientAxios from '../../api/api.axios';
 
 const Login = () => {
+
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -11,7 +14,17 @@ const Login = () => {
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {console.log(data)}
+  const onSubmit = async (data) => {
+    try {
+      //TODO: autenticar al usuario con la contraseña correcta
+      const { email, password } = data
+      const result = await clientAxios.post('/auth/login', {email, password})
+      console.log(result)
+    } catch (error) {
+      console.log(error.response.data.message)
+      // console.log({message: error.message.response})
+    }
+  }
 
   return (
     <div>
