@@ -21,7 +21,7 @@ const Register = () => {
         const {name, lastName, email, password} = data
         await clientAxios.post('/auth/register', {name, lastName, email, password})
         setTimeout(() => {
-          navigate("/auth/confirmation-email")
+          navigate("/auth/confirmation-email", {state: email})
         }, 3000)
       } catch (error) {
         console.log(error)

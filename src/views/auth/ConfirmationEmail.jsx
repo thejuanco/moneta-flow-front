@@ -1,7 +1,12 @@
 import React from "react";
+import { useLocation } from "react-router";
 import { Link } from "react-router";
 
 const ConfirmationEmail = () => {
+    //extrayendo el correo del register
+    const location = useLocation()
+    const data = location.state
+
   return (
     <>
       <div className="flex flex-col items-center justify-center pt-20">
@@ -19,10 +24,10 @@ const ConfirmationEmail = () => {
             Hemos enviado un enlace de verificación a tu correo electrónico
           </p>
           <div className="border border-gray-200 p-4 rounded-lg mt-8">
-            <p className="text-gray-600 text-center">
+            <p className="text-gray-500 text-center">
               Hemos enviado un correo a:
             </p>
-            <p className=""></p>
+            <p className="text-center">{data}</p>
           </div>
           <div className="space-y-2 mt-2 text-center">
             <p className="text-sm text-gray-500">
