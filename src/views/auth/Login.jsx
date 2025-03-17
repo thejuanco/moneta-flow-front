@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form'
-import NavBarForm from '../../components/auth/NavBarForm'
 import clientAxios from '../../api/api.axios';
+import AlertForms from '../../components/auth/AlertForms';
+import NavBarForm from '../../components/auth/NavBarForm'
 
 const Login = () => {
-
   const [loading, setLoading] = useState(false)
+  const [alert, setAlert] = useState({})
 
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -16,13 +18,11 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      //TODO: autenticar al usuario con la contraseña correcta
       const { email, password } = data
-      const result = await clientAxios.post('/auth/login', {email, password})
-      console.log(result)
+      await clientAxios.post('/auth/login', {email, password})
+      navigate("/dashboard")
     } catch (error) {
-      console.log(error.response.data.message)
-      // console.log({message: error.message.response})
+      setAlert({message: error.response.data.message})
     }
   }
 
@@ -38,7 +38,7 @@ const Login = () => {
             Inicia Sesión en Moneta
           </h1>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-10 mb-6">
-            <div className="space-y-4">
+            <div className="space-y-4 mb-2">
               <div className="space-y-2">
                 <label className="font-semibold block" htmlFor="email">
                   Correo Electronico*
@@ -80,6 +80,7 @@ const Login = () => {
                 )}
               </div>
             </div>
+            <AlertForms alert={alert} />
             <button className="bg-purple-800 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-purple-700">
               Continuar
             </button>
