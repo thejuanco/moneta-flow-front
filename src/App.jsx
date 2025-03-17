@@ -7,6 +7,7 @@ import Register from "./views/auth/Register"
 import NotFound from "./views/public/NotFound"
 import RecoveryPassword from "./views/auth/RecoveryPassword"
 import ConfirmationEmail from "./views/auth/ConfirmationEmail"
+import ConfirmAccount from "./views/auth/ConfirmAccount"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/auth/signup" element={<Register />} />
         <Route path="/auth/recovery-password" element={<RecoveryPassword />} />
         <Route path="/auth/confirmation-email" element={<ConfirmationEmail />} />
+        <Route path="/auth/confirm-account/:id" element={<ConfirmAccount/>} />
       </Routes>
     </>
   )
