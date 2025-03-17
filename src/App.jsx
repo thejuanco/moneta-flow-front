@@ -9,6 +9,9 @@ import RecoveryPassword from "./views/auth/RecoveryPassword"
 import ConfirmationEmail from "./views/auth/ConfirmationEmail"
 import ConfirmAccount from "./views/auth/ConfirmAccount"
 
+//Rutas privadas
+import Dashboard from "./views/dashboard/Dashboard"
+
 function App() {
   return (
     <>
@@ -20,6 +23,8 @@ function App() {
         <Route path="/auth/recovery-password" element={<RecoveryPassword />} />
         <Route path="/auth/confirmation-email" element={<ConfirmationEmail />} />
         <Route path="/auth/confirm-account/:id" element={<ConfirmAccount/>} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   )
