@@ -49,7 +49,9 @@ const Register = () => {
                 <input
                   name="name"
                   type="text"
-                  className="w-full p-2 rounded-lg border border-gray-200"
+                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
+                    errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                  }`}
                   placeholder="Tu nombre"
                   {...register("name", { required: true })}
                 />
@@ -62,8 +64,11 @@ const Register = () => {
                   Apellido*
                 </label>
                 <input
-                  className="w-full p-2 rounded-lg border border-gray-200"
+                  name="lastName"
                   placeholder="Tu apellido"
+                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
+                    errors.lastName ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                  }`}
                   {...register("lastName", { required: true })}
                 />
                 {errors.lastName?.type === "required" && (
@@ -75,7 +80,9 @@ const Register = () => {
                   Correo Electronico*
                 </label>
                 <input
-                  className="w-full p-2 rounded-lg border border-gray-200"
+                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
+                    errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                  }`}
                   placeholder="ejemplo@correo.com"
                   {...register("email", {
                     required: {
@@ -99,7 +106,9 @@ const Register = () => {
                   </label>
                 </div>
                 <input
-                  className="w-full p-2 mb-2 rounded-lg border border-gray-200"
+                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
+                    errors.password ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                  }`}
                   type="password"
                   {...register("password", {
                     required: {
