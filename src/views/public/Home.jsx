@@ -34,6 +34,13 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
+                <div className="flex items-center justify-center">
+                  <img
+                    className="h-56 w-56 rounded-lg object-cover"
+                    src="img/finance-main.svg" 
+                    alt="Imagen de inicio"
+                  />
+                </div>
               </div>
             </div>
           </section>
