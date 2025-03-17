@@ -35,24 +35,28 @@ const ConfirmAccount = () => {
           <span>Moneta-Flow</span>
         </Link>
         <div className="w-full max-w-md border border-gray-100 p-6 rounded-xl shadow">
-          <h1 className="text-black text-center font-bold text-2xl pt-8">
+          <h1 className="text-black text-center font-bold text-2xl pt-8 mb-2">
             Confirmación de cuenta
           </h1>
-          <p className="text-gray-500 text-center mx-8 mt-2">
-            {message}
-          </p>
-          <AlertForms alert={alert} />
+          {confirmAccount ? (
+            <p className="text-gray-500 text-center mx-8">
+              {JSON.stringify(message)}
+            </p>
+          ) : (
+            <AlertForms alert={alert} />
+          )}
+
           {confirmAccount ? (
             <Link to="/auth/signin">
-            <button className="border border-gray-200 p-2 rounded-lg mt-8 w-full font-semibold hover:bg-gray-100 hover:cursor-pointer">
+              <button className="border border-gray-200 p-2 rounded-lg mt-8 w-full font-semibold hover:bg-gray-100 hover:cursor-pointer">
                 Inicar Sesión
-            </button>
-          </Link>
+              </button>
+            </Link>
           ) : (
             <Link to="/auth/signup">
-                <button className="border border-gray-200 p-2 rounded-lg mt-8 w-full font-semibold hover:bg-gray-100 hover:cursor-pointer">
-                    Volver a incio
-                </button>
+              <button className="border border-gray-200 p-2 rounded-lg mt-8 w-full font-semibold hover:bg-gray-100 hover:cursor-pointer">
+                Volver a inicio
+              </button>
             </Link>
           )}
         </div>
