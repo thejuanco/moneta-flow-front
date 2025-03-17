@@ -44,13 +44,15 @@ const Login = () => {
                   Correo Electronico*
                 </label>
                 <input
+                  name="email"
+                  type="email"
                   className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
                     errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
                   }`}
                   placeholder="ejemplo@correo.com"
                   {...register("email", { required: true })}
                 />
-                {errors.password?.type === "required" && (
+                {errors.email?.type === "required" && (
                   <p role="alert" className="text-red-700 text-sm text-center">El correo es obligatorio</p>
                 )}
               </div>

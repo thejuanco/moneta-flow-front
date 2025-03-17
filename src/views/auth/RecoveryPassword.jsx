@@ -64,7 +64,7 @@ const RecoveryPassword = () => {
                 <p className="text-sm m-2 mb-4 text-gray-500">
                     Te enviaremos un correo a tu cuenta de correo para 
                     restablecer tu contraseña.
-                    </p>
+                </p>
                 <div className="flex flex-row justify-center hover:underline">
                     <Link to="/">Volver a inicio</Link>
                 </div>
