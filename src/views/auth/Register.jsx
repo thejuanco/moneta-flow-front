@@ -1,17 +1,33 @@
-import React from 'react'
-import { Link } from 'react-router'
+import { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router'
 import { useForm } from 'react-hook-form'
+import clientAxios from '../../api/api.axios'
+import AlertForms from '../../components/auth/AlertForms'
 import NavBarForm from '../../components/auth/NavBarForm'
 
 const Register = () => {
+  const [alert, setAlert] = useState({})
+  const [loading, setLoading] = useState(false)
 
+  const navigate = useNavigate()
   const {
       register,
       handleSubmit,
       formState: { errors }
     } = useForm();
   
-    const onSubmit = (data) => {console.log(data)}
+    const onSubmit = async (data) => {
+      try {
+        const {name, lastName, email, password} = data
+        await clientAxios.post('/auth/register', {name, lastName, email, password})
+        setTimeout(() => {
+          navigate("/")
+        }, 3000)
+      } catch (error) {
+        console.log(error)
+        setAlert({message: error.response.data.message})
+      }
+    }
 
   return (
     <>
@@ -31,10 +47,15 @@ const Register = () => {
                   Nombre*
                 </label>
                 <input
+                  name="name"
+                  type="text"
                   className="w-full p-2 rounded-lg border border-gray-200"
-                  placeholder="tu nombre"
-                  {...register("nombre", { required: true })}
+                  placeholder="Tu nombre"
+                  {...register("name", { required: true })}
                 />
+                {errors.name?.type === "required" && (
+                  <p role="alert" className="text-red-700 text-sm text-center">El nombre es obligatorio</p>
+                )}
               </div>
               <div className="space-y-2">
                 <label className="font-semibold block" htmlFor="lastName">
@@ -42,9 +63,12 @@ const Register = () => {
                 </label>
                 <input
                   className="w-full p-2 rounded-lg border border-gray-200"
-                  placeholder="ejemplo@correo.com"
+                  placeholder="Tu apellido"
                   {...register("lastName", { required: true })}
                 />
+                {errors.lastName?.type === "required" && (
+                  <p role="alert" className="text-red-700 text-sm text-center">El apellido es obligatorio</p>
+                )}
               </div>
               <div className="space-y-2">
                 <label className="font-semibold block" htmlFor="email">
@@ -53,8 +77,20 @@ const Register = () => {
                 <input
                   className="w-full p-2 rounded-lg border border-gray-200"
                   placeholder="ejemplo@correo.com"
-                  {...register("email", { required: true })}
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "El correo es obligatorio",
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "El correo no es válido",
+                    },
+                  })}
                 />
+                {errors.email && (
+                  <p role="alert" className="text-red-700 text-sm text-center">{errors.email.message}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -63,16 +99,32 @@ const Register = () => {
                   </label>
                 </div>
                 <input
-                  className="w-full p-2 rounded-lg border border-gray-200"
+                  className="w-full p-2 mb-2 rounded-lg border border-gray-200"
                   type="password"
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "La contraseña es obligatoria",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "La contraseña es demasiado corta",
+                    },
+                  })}
                 />
+                {errors.password && (
+                  <p role="alert" className="text-red-700 text-sm text-center">{errors.password.message}</p>
+                )}
               </div>
             </div>
+            <AlertForms alert={alert}/>
             <button className="bg-purple-800 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-purple-700">
               Continuar
             </button>
           </form>
+          <p className="text-sm m-2 mb-4 text-gray-500">
+            Una vez que te registras aceptas nuestros términos y condiciones.
+          </p>
           <div className="flex justify-center">
             <p>¿Ya tienes una cuenta?&nbsp;</p>
             <Link to="/auth/signin" className="hover:underline">
