@@ -10,6 +10,7 @@ import ConfirmationEmail from "./views/auth/ConfirmationEmail"
 import ConfirmAccount from "./views/auth/ConfirmAccount"
 
 //Rutas privadas
+import PrivateRoute from "./views/dashboard/components/auth/PrivateRoute"
 import Dashboard from "./views/dashboard/Dashboard"
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Route path="/auth/confirmation-email" element={<ConfirmationEmail />} />
         <Route path="/auth/confirm-account/:id" element={<ConfirmAccount/>} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route index element={<Dashboard />} />
+        </Route>
       </Routes>
     </>
   )

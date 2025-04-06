@@ -1,7 +1,10 @@
 import {  useState } from 'react'
 import { Link, useNavigate } from 'react-router';
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { connectAPI } from '../../api/connectAPI';
+
+//Autenticacion
+import { useAuth } from '../../context/AuthProvider';
 
 //Componentes
 import AlertForms from '../../components/auth/AlertForms';
@@ -11,6 +14,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState({})
   const navigate = useNavigate()
+  const { signIn, setIsAuthenticated } = useAuth()
 
   const {
     register,
@@ -29,17 +33,20 @@ const Login = () => {
           localStorage.setItem('token', token)
           localStorage.setItem('name', name)
           //Almacena el token en el contexto
+          signIn(token)
           setLoading(true)
         })
         .catch(error => {
-          console.log(error)
+          console.log("Error desde logn" ,error)
         })
+      setLoading(false)
       navigate("/dashboard")
     } catch (error) {
       const status = error.message
 
       if (status === "Network Error") {
         setAlert({message: "Error de conexión, verifica tu internet"})
+        setLoading(false)
         return  
       }
       setAlert({message: error.message})
