@@ -1,15 +1,17 @@
-import { useState } from 'react'
+import {  useState } from 'react'
 import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form'
-import clientAxios from '../../api/api.axios';
+import { connectAPI } from '../../api/connectAPI';
+
+//Componentes
 import AlertForms from '../../components/auth/AlertForms';
 import NavBarForm from '../../components/auth/NavBarForm'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState({})
-
   const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -19,10 +21,29 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const { email, password } = data
-      await clientAxios.post('/auth/login', {email, password})
+      await connectAPI.post('/auth/login', {email, password})
+        .then(response => {
+          //Almacena el token y nombre en el localStorage
+          const token = response.data.token
+          const name = response.data.name
+          localStorage.setItem('token', token)
+          localStorage.setItem('name', name)
+          //Almacena el token en el contexto
+          setLoading(true)
+        })
+        .catch(error => {
+          console.log(error)
+        })
       navigate("/dashboard")
     } catch (error) {
-      setAlert({message: error.response.data.message})
+      const status = error.message
+
+      if (status === "Network Error") {
+        setAlert({message: "Error de conexión, verifica tu internet"})
+        return  
+      }
+      setAlert({message: error.message})
+      console.log(error.message)
     }
   }
 
@@ -81,7 +102,7 @@ const Login = () => {
               </div>
             </div>
             <AlertForms alert={alert} />
-            <button className="bg-purple-800 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-purple-700">
+            <button className="bg-green-700 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-green-600">
               Continuar
             </button>
           </form>
