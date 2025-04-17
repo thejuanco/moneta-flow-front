@@ -13,21 +13,30 @@ import ConfirmAccount from "./views/auth/ConfirmAccount"
 import PrivateRoute from "./views/dashboard/components/auth/PrivateRoute"
 import Dashboard from "./views/dashboard/Dashboard"
 
+//Autenticacion
+import { useAuth } from "./context/AuthProvider"
+
 function App() {
+  const { isAuthenticated } = useAuth()
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/auth/signin" element={<Login />} />
-        <Route path="/auth/signup" element={<Register />} />
-        <Route path="/auth/recovery-password" element={<RecoveryPassword />} />
-        <Route path="/auth/confirmation-email" element={<ConfirmationEmail />} />
-        <Route path="/auth/confirm-account/:id" element={<ConfirmAccount/>} />
-
-        <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route index element={<Dashboard />} />
-        </Route>
+        {isAuthenticated ? (
+          <>
+            <Route index path="/dashboard" element={<Dashboard />} />
+          </>
+          ) : (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/auth/signin" element={<Login />} />
+            <Route path="/auth/signup" element={<Register />} />
+            <Route path="/auth/recovery-password" element={<RecoveryPassword />} />
+            <Route path="/auth/confirmation-email" element={<ConfirmationEmail />} />
+            <Route path="/auth/confirm-account/:id" element={<ConfirmAccount/>} />
+          </>
+        )}
       </Routes>
     </>
   )
