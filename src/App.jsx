@@ -17,7 +17,14 @@ import Dashboard from "./views/dashboard/Dashboard"
 import { useAuth } from "./context/AuthProvider"
 
 function App() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, loading } = useAuth()
+
+  if (loading) {
+    return <div>
+      <h1 className="text-2xl font-bold text-center pt-4">Cargando...</h1>
+      <p className="text-center mt-4">Por favor espera...</p>
+    </div>
+  }
 
   return (
     <>
@@ -25,6 +32,7 @@ function App() {
         {isAuthenticated ? (
           <>
             <Route index path="/dashboard" element={<Dashboard />} />
+            <Route path="*" element={<NotFound />} />
           </>
           ) : (
           <>
