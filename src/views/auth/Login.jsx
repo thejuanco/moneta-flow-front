@@ -13,6 +13,8 @@ import NavBarForm from '../../components/auth/NavBarForm'
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState({})
+  const [isVisible, setIsVisible] = useState(false)
+
   const navigate = useNavigate()
   const { signIn, setIsAuthenticated } = useAuth()
   const axiosInstance = useAxios()
@@ -52,6 +54,10 @@ const Login = () => {
     }
   };
 
+  const toggleVisible = () => {
+    setIsVisible(!isVisible);
+  }
+
   return (
     <div>
       <NavBarForm />
@@ -73,13 +79,17 @@ const Login = () => {
                   name="email"
                   type="email"
                   className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
-                    errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
+                    errors.email
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200"
                   }`}
                   placeholder="ejemplo@correo.com"
                   {...register("email", { required: true })}
                 />
                 {errors.email?.type === "required" && (
-                  <p role="alert" className="text-red-700 text-sm text-center">El correo es obligatorio</p>
+                  <p role="alert" className="text-red-700 text-sm text-center">
+                    El correo es obligatorio
+                  </p>
                 )}
               </div>
               <div className="space-y-2">
@@ -94,15 +104,30 @@ const Login = () => {
                     Olvide mi contraseña
                   </Link>
                 </div>
-                <input
-                  className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-1 ${
-                    errors.password ? "border-red-500 focus:ring-red-500" : "border-gray-200" 
-                  }`}
-                  type="password"
-                  {...register("password", { required: true })}
-                />
+                <div className="flex flex-row border border-gray-200 rounded-lg items-center relative">
+                  <input
+                    className={`w-full p-2 rounded-lg border pr-10 focus:outline-none focus:ring-1 ${
+                      errors.password
+                        ? "border-red-500 focus:ring-red-500"
+                        : "border-gray-200"
+                    }`}
+                    type={isVisible ? "password" : "text"}
+                    {...register("password", { required: true })}
+                  />
+                  <button
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    onClick={toggleVisible}
+                    type="button"
+                  >
+                    <span className="material-symbols-outlined">
+                      {isVisible ? "visibility" : "visibility_off"}
+                    </span>
+                  </button>
+                </div>
                 {errors.password?.type === "required" && (
-                  <p role="alert" className="text-red-700 text-sm text-center">La contraseña es obligatoria</p>
+                  <p role="alert" className="text-red-700 text-sm text-center">
+                    La contraseña es obligatoria
+                  </p>
                 )}
               </div>
             </div>
