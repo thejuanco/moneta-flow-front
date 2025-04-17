@@ -15,7 +15,7 @@ const Dashboard = () => {
 
         <div className="flex-1 flex flex-col">
           <NavBar />
-          <main className="flex-1 p-4">
+          <main className="flex-1 p-5">
             <Outlet />
           </main>
         </div>
