@@ -53,7 +53,7 @@ const Sidebard = () => {
                             </div>
                         </li>
                         <li>
-                            <Link to="/demo/profile" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
+                            <Link to="/dashboard/profile" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <span class="material-symbols-rounded">
                                         person

@@ -15,6 +15,7 @@ import Dashboard from "./views/dashboard/Dashboard"
 import Dash from "./views/dashboard/views/Dash"
 import Counts from "./views/dashboard/views/Counts"
 import Budget from "./views/dashboard/views/Budget"
+import Profile from "./views/dashboard/views/Profile"
 
 //Autenticacion
 import { useAuth } from "./context/AuthProvider"
@@ -38,6 +39,7 @@ function App() {
               <Route index element={<Dash/>} />
               <Route path="counts" element={<Counts />} />
               <Route path="budget" element={<Budget />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
           </>
           ) : (
