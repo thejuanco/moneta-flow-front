@@ -35,6 +35,7 @@ function App() {
       <Routes>
         {isAuthenticated ? (
           <>
+            <Route path="/" element={<Home />} />
             <Route  path="/dashboard/" element={<Dashboard />} >
               <Route index element={<Dash/>} />
               <Route path="counts" element={<Counts />} />

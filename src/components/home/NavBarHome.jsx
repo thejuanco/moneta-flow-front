@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
+import { useAuth } from "../../context/AuthProvider";
 
 const NavBarHome = () => {
   //Activa y desactiva el menu
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const { isAuthenticated } = useAuth();
 
   return (
     <>
@@ -16,24 +19,39 @@ const NavBarHome = () => {
         >
           <span className="material-symbols-rounded ml-2">menu</span>
         </button>
-        <div
-          className={`md:flex md:space-x-4 ${
-            menuOpen ? "block" : "hidden"
-          } absolute md:static top-16 right-6 md:top-0 bg-gray-100 md:bg-transparent rounded-lg p-4 md:p-0 shadow-lg md:shadow-none`}
-        >
-          <Link
-            to="/auth/signin"
-            className="text-gray-800 font-semibold py-2 px-4 block md:inline-block rounded-md hover:bg-gray-200 transition-colors duration-300"
+        {isAuthenticated ? (
+          <div
+            className={`md:flex md:space-x-4 ${
+              menuOpen ? "block" : "hidden"
+            } absolute md:static top-16 right-6 md:top-0 bg-gray-100 md:bg-transparent rounded-lg p-4 md:p-0 shadow-lg md:shadow-none`}
           >
-            Iniciar Sesión
-          </Link>
-          <Link
-            to="/auth/signup"
-            className="bg-gray-900 text-white font-semibold py-2 px-4 block md:inline-block rounded-md hover:bg-gray-700 transition-transform duration-300 transform hover:scale-105"
+            <Link
+              to="/dashboard"
+              className="bg-gray-900 text-white font-semibold py-2 px-4 block md:inline-block rounded-md hover:bg-gray-700 transition-transform duration-300 transform hover:scale-105"
+            >
+              Ir al Dashboard
+            </Link>
+          </div>
+        ) : (
+          <div
+            className={`md:flex md:space-x-4 ${
+              menuOpen ? "block" : "hidden"
+            } absolute md:static top-16 right-6 md:top-0 bg-gray-100 md:bg-transparent rounded-lg p-4 md:p-0 shadow-lg md:shadow-none`}
           >
-            Crear una cuenta
-          </Link>
-        </div>
+            <Link
+              to="/auth/signin"
+              className="text-gray-800 font-semibold py-2 px-4 block md:inline-block rounded-md hover:bg-gray-200 transition-colors duration-300"
+            >
+              Iniciar Sesión
+            </Link>
+            <Link
+              to="/auth/signup"
+              className="bg-gray-900 text-white font-semibold py-2 px-4 block md:inline-block rounded-md hover:bg-gray-700 transition-transform duration-300 transform hover:scale-105"
+            >
+              Crear una cuenta
+            </Link>
+          </div>
+        )}
       </nav>
     </>
   );
