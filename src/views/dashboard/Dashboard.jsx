@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react'
-import useAxios from '../../api/api.axios'
+import React from 'react'
+import { Outlet } from 'react-router'
+
+//Importar componentes
+import Sidebard from './components/home/Sidebard'
+import NavBar from './components/home/NavBar'
 
 const Dashboard = () => {
-  const instanceAPI = useAxios()
 
   return (
     <>
-      <div>
-        <h1 className="text-2xl font-bold text-center pt-4">Dashboard</h1>
-        <p className="text-center mt-4">Bienvenido al Dashboard</p>
+      <Sidebard/>
+      <NavBar/>
+      <div className="p-4 sm:ml-64">
+        <Outlet/>
       </div>
     </>
   )

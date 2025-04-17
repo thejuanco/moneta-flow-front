@@ -12,6 +12,9 @@ import ConfirmAccount from "./views/auth/ConfirmAccount"
 //Rutas privadas
 import PrivateRoute from "./views/dashboard/components/auth/PrivateRoute"
 import Dashboard from "./views/dashboard/Dashboard"
+import Dash from "./views/dashboard/views/Dash"
+import Counts from "./views/dashboard/views/Counts"
+import Budget from "./views/dashboard/views/Budget"
 
 //Autenticacion
 import { useAuth } from "./context/AuthProvider"
@@ -31,8 +34,11 @@ function App() {
       <Routes>
         {isAuthenticated ? (
           <>
-            <Route index path="/dashboard" element={<Dashboard />} />
-            <Route path="*" element={<NotFound />} />
+            <Route  path="/dashboard/" element={<Dashboard />} >
+              <Route path="home" index element={< Dash/>} />
+              <Route path="counts" element={<Counts />} />
+              <Route path="budget" element={<Budget />} />
+            </Route>
           </>
           ) : (
           <>
