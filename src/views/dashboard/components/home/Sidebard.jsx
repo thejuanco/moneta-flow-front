@@ -17,7 +17,7 @@ const Sidebard = () => {
                             </div>
                         </li>
                         <li>
-                            <Link to='/dashboard/home' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                            <Link to='/dashboard/home' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <span class="material-symbols-rounded">
                                         home
@@ -27,7 +27,7 @@ const Sidebard = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/dashboard/counts" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                            <Link to="/dashboard/counts" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <span class="material-symbols-rounded">
                                         task
@@ -37,7 +37,7 @@ const Sidebard = () => {
                             </Link>
                         </li>
                         <li>
-                        <Link to='/dashboard/budget' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <Link to='/dashboard/budget' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <span class="material-symbols-rounded">
                                     workspaces
@@ -53,7 +53,7 @@ const Sidebard = () => {
                             </div>
                         </li>
                         <li>
-                            <Link to="/demo/profile" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                            <Link to="/demo/profile" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <span class="material-symbols-rounded">
                                         person
@@ -63,7 +63,7 @@ const Sidebard = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/demo/settings" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                            <Link to="/demo/settings" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <span class="material-symbols-rounded">
                                         settings
