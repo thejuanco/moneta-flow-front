@@ -2,7 +2,11 @@ import React from 'react'
 
 const Dash = () => {
   return (
-    <div>Dash</div>
+    <>
+        <div>
+            
+        </div>
+    </>
   )
 }
 

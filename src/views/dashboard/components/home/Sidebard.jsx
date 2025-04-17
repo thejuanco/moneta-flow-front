@@ -17,7 +17,7 @@ const Sidebard = () => {
                             </div>
                         </li>
                         <li>
-                            <Link to='/dashboard/home' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
+                            <Link to='/dashboard' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <span class="material-symbols-rounded">
                                         home
@@ -28,8 +28,8 @@ const Sidebard = () => {
                         </li>
                         <li>
                             <Link to="/dashboard/counts" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <span class="material-symbols-rounded">
+                                <span className="inline-flex justify-center items-center ml-4">
+                                    <span className="material-symbols-rounded">
                                         task
                                     </span>
                                 </span>
