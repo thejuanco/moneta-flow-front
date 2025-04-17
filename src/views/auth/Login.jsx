@@ -1,7 +1,7 @@
 import {  useState } from 'react'
 import { Link, useNavigate } from 'react-router';
-import { set, useForm } from 'react-hook-form'
-import { connectAPI } from '../../api/connectAPI';
+import { useForm } from 'react-hook-form'
+import useAxios from '../../api/api.axios';
 
 //Autenticacion
 import { useAuth } from '../../context/AuthProvider';
@@ -15,6 +15,7 @@ const Login = () => {
   const [alert, setAlert] = useState({})
   const navigate = useNavigate()
   const { signIn, setIsAuthenticated } = useAuth()
+  const axiosInstance = useAxios()
 
   const {
     register,
@@ -24,35 +25,32 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const { email, password } = data
-      await connectAPI.post('/auth/login', {email, password})
-        .then(response => {
-          //Almacena el token y nombre en el localStorage
-          const token = response.data.token
-          const name = response.data.name
-          localStorage.setItem('token', token)
-          localStorage.setItem('name', name)
-          //Almacena el token en el contexto
-          signIn(token)
-          setLoading(true)
-        })
-        .catch(error => {
-          console.log("Error desde logn" ,error)
-        })
-      setLoading(false)
+      const { email, password } = data;
+      const response = await axiosInstance.post("/auth/login", {
+        email,
+        password,
+      });
+      //Almacena el token y nombre en el localStorage
+      const token = response.data.token;
+      const name = response.data.name;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("name", name);
+      //Almacena el token en el contexto
+      signIn(token)
       navigate("/dashboard")
     } catch (error) {
-      const status = error.message
+      const status = error.message;
 
       if (status === "Network Error") {
-        setAlert({message: "Error de conexión, verifica tu internet"})
-        setLoading(false)
-        return  
+        setAlert({ message: "Error de conexión, intenta más tarde" });
+        setLoading(false);
+        return;
       }
-      setAlert({message: error.message})
-      console.log(error.message)
+      setAlert({ message: error.response.data.message });
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div>
@@ -110,7 +108,7 @@ const Login = () => {
             </div>
             <AlertForms alert={alert} />
             <button className="bg-green-700 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-green-600">
-              Continuar
+              Iniciar Sesión
             </button>
           </form>
           <div className="flex justify-center">

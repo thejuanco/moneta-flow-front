@@ -4,22 +4,22 @@ import { useState, useEffect, createContext, useContext } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const [auth, setAuth] = useState({})
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [token, setToken] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const loadToken = () => {
+        const loadToken = async () => {
             //Valida que existe un token
-            const storedToken = localStorage.getItem("token")
+            const storedToken = await localStorage.getItem("token")
             if(storedToken){
                 //Asigna el token
                 setToken(storedToken)
                 //Autentica al token y al usuario
                 setIsAuthenticated(true)
-            } else {
-                //Si no existe el token, redirige al login
-                window.location.href = "/auth/login"
             }
+            setLoading(false)
         }
         loadToken()
     }, [])
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     const signIn = async (newToken) => {
         setToken(newToken)
         setIsAuthenticated(true)
-        localStorage.setItem("token", newToken)
+        await localStorage.setItem("token", newToken)
     }
 
     const singOut = () => {

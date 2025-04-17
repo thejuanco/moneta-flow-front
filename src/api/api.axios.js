@@ -20,7 +20,7 @@ const useAxios = () => {
     instanceAPI.interceptors.request.use(
         (config) => {
             if(token){
-                config.headers.Accept = `Bearer ${token}`
+                config.headers.Authorization = `Bearer ${token}`
             }
             return config
         },
