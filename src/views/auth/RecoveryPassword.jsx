@@ -57,7 +57,7 @@ const RecoveryPassword = () => {
                     )}
                     <AlertForms alert={alert}/>
                     </div>
-                    <button className="bg-purple-800 mb-2 text-white w-full py-2 font-semibold rounded-lg hover:bg-purple-700">
+                    <button className="bg-green-700 mb-2 text-white w-full py-2 font-semibold rounded-lg hover:bg-green-600">
                     Continuar
                     </button>
                 </form>

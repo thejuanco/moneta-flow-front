@@ -127,7 +127,7 @@ const Register = () => {
               </div>
             </div>
             <AlertForms alert={alert}/>
-            <button className="bg-purple-800 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-purple-700">
+            <button className="bg-green-700 text-white w-full mt-8 py-2 font-semibold rounded-lg hover:bg-green-600">
               Continuar
             </button>
           </form>
