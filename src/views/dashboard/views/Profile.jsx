@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useAuth } from "../../../context/AuthProvider";
+import useAxios from "../../../api/api.axios";
 
 const Profile = () => {
+  const [user, setUser ] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    image: null,
+    password: "",
+  });
   const { singOut } = useAuth();
+
+  //Obtener el perfil del usuario
+  const instanceAPI = useAxios();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await instanceAPI.get("/auth/profile");
+      setUser(response.data);
+      reset(response.data);
+    }
+    getUser()
+  }, []);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  }
 
   return (
     <>
@@ -42,7 +75,7 @@ const Profile = () => {
             Actualiza tu información personal y de contacto
           </span>
 
-          <form className="mt-4">
+          <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 space-x-4">
               <div>
                 <label>Nombre</label>
@@ -50,6 +83,7 @@ const Profile = () => {
                   type="text"
                   className="border border-gray-300 rounded-lg w-full p-2 mt-2 mb-4"
                   placeholder="Tu Nombre"
+                  {...register("name", { required: true })}
                 />
               </div>
               <div>
@@ -58,6 +92,7 @@ const Profile = () => {
                   type="text"
                   className="border border-gray-300 rounded-lg w-full p-2 mt-2 mb-4"
                   placeholder="Tu Apellido"
+                  {...register("lastName", { required: true })}
                 />
               </div>
             </div>
@@ -69,6 +104,7 @@ const Profile = () => {
                   type="text"
                   className="border border-gray-300 rounded-lg w-full p-2 mt-2 mb-4"
                   placeholder="Tu Correo"
+                  {...register("email", { required: true })}
                 />
               </div>
               <div>
@@ -77,6 +113,7 @@ const Profile = () => {
                   type="text"
                   className="border border-gray-300 rounded-lg w-full p-2 mt-2 mb-4"
                   placeholder="Tu Número"
+                  register={register("phone")}
                 />
               </div>
             </div>
