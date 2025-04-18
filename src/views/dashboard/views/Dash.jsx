@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
 
 const Dash = () => {
   return (
     <>
-        <div>
-            
-        </div>
+      <div>
+        <h1 className="text-3xl font-bold">Dashboard</h1>
+        
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Dash
+export default Dash;

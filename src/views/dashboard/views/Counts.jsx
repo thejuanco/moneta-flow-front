@@ -2,7 +2,12 @@ import React from 'react'
 
 const Counts = () => {
   return (
-    <div>Counts</div>
+    <>
+      <div>
+        <h1 className="text-3xl font-bold">Cuentas</h1>
+        
+      </div>
+    </>
   )
 }
 

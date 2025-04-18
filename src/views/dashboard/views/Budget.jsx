@@ -2,7 +2,12 @@ import React from 'react'
 
 const Budget = () => {
   return (
-    <div>Budget</div>
+    <>
+      <div>
+        <h1 className="text-3xl font-bold">Presupuestos</h1>
+        
+      </div>
+    </>
   )
 }
 
