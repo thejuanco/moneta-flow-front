@@ -37,6 +37,16 @@ const Sidebard = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link to="/dashboard/categories" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
+                                <span className="inline-flex justify-center items-center ml-4">
+                                    <span className="material-symbols-rounded">
+                                        sell
+                                    </span>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Categorias</span>
+                            </Link>
+                        </li>
+                        <li>
                         <Link to='/dashboard/budget' class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-green-600 pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <span class="material-symbols-rounded">
