@@ -16,6 +16,7 @@ import Dash from "./views/dashboard/views/Dash"
 import Counts from "./views/dashboard/views/Counts"
 import Budget from "./views/dashboard/views/Budget"
 import Profile from "./views/dashboard/views/Profile"
+import Categories from "./views/dashboard/views/Categories"
 
 //Autenticacion
 import { useAuth } from "./context/AuthProvider"
@@ -41,6 +42,7 @@ function App() {
               <Route path="counts" element={<Counts />} />
               <Route path="budget" element={<Budget />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="categories" element={<Categories />} />
             </Route>
           </>
           ) : (
