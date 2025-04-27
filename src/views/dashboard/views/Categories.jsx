@@ -1,12 +1,19 @@
-import React, { useState, Fragment } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, Fragment, useEffect } from "react";
+import { get, useForm } from "react-hook-form";
 import { Dialog, Transition, RadioGroup } from "@headlessui/react";
+
+import { useCategories } from "../../../context/CategoriesContext"
 
 const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { categories } = useCategories()
 
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
+
+  useEffect(() => {
+    console.log(categories)
+  }, [categories])
 
   const {
     register,
