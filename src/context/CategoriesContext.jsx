@@ -8,7 +8,7 @@ export const CategoriesProvider = ({ children }) => {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
     const { token, user } = useAuth()
-    const { instanceAPI } = useAxios()
+    const instanceAPI = useAxios()
 
     //Endpoint de categorias
     const getCategories = async () => {
@@ -28,10 +28,10 @@ export const CategoriesProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (user && token) {
+        if (token) {
           getCategories();
         }
-      }, [user, token]);
+      }, [ token]);
 
     return (
         <CategoriesContext.Provider value={{categories}}>

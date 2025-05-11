@@ -1,18 +1,19 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { get, useForm } from "react-hook-form";
-import { Dialog, Transition, RadioGroup } from "@headlessui/react";
+import { useForm } from "react-hook-form";
+import { Dialog, Transition } from "@headlessui/react";
 
-import { useCategories } from "../../../context/CategoriesContext"
+import { useCategories } from "../../../context/CategoriesContext";
 
 const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [categoriesUser, setCategoriesUser] = useState([]);
   const { categories } = useCategories()
 
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 
   useEffect(() => {
-    console.log(categories)
+    setCategoriesUser(categories)
   }, [categories])
 
   const {
@@ -126,6 +127,21 @@ const Categories = () => {
             Organiza tus transacciones con categorías personalizadas para un
             mejor seguimiento financiero.
           </span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {categories.length === 0 ? (
+            <p>No hay categorías disponibles.</p>
+          ) : (
+            categories.map((category) => (
+              <div
+                key={category.id}
+                className="p-4 rounded-lg border border-gray-300 bg-white"
+              >
+                <h3 className="text-lg font-semibold">{category.name}</h3>
+                <p className="text-gray-600">{category.description}</p>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </>
